@@ -1,3 +1,5 @@
+package Challenge44;
+
 public class FizzBuzz {
 
     public static void main(String[] args){
@@ -20,3 +22,4 @@ public class FizzBuzz {
         }
     }
 }
+
