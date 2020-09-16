@@ -19,6 +19,7 @@ public class CharOccurrencesInAString {
                     count++;
                 }
             }
+            // NOTE TO SELF: gjør at denne bare printer ut én gang for hver bokstav.
             System.out.println("The letter: '" + string.charAt(i) + "' has " + count + " occurrences");
             count = 0;
         }
