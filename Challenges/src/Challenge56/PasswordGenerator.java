@@ -41,7 +41,7 @@ public class PasswordGenerator {
                 the string connected to that index.
             */
             int currentIndexInArray = random.nextInt(checkedCharacters.size());
-
+            // Simplyfied   -    checkedCharacters.get(1).charAt(5);
             generatedPassword += checkedCharacters.get(currentIndexInArray).charAt(random.nextInt(checkedCharacters.get(currentIndexInArray).length()));
         }
 
