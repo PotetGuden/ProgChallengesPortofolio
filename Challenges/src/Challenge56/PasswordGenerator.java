@@ -6,6 +6,7 @@ import java.util.Random;
 public class PasswordGenerator {
     public static void main(String[] args) {
         passwordGenerator(15,true, true,false,true);
+        passwordGenerator(10,false, true,false,true);
     }
 
     public static void passwordGenerator(int passwordLength, boolean doUpperCase, boolean doLowercase, boolean doSpecial, boolean doInt){
