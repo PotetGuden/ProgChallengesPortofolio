@@ -4,7 +4,7 @@ public class CharOccurrencesInAString {
 
     public static void main(String[] args){
         checkCharOccurrencesString("abbcccdddd");
-        checkCharOccurrencesString("abcdabcd");
+        checkCharOccurrencesString("abcd abcd");
         checkCharOccurrencesString("qwertyqwerty");
     }
 
@@ -19,7 +19,6 @@ public class CharOccurrencesInAString {
                     count++;
                 }
             }
-            // Fiks denne så den ikke nevner samme bokstav flere ganger..
             System.out.println("The letter: '" + string.charAt(i) + "' has " + count + " occurrences");
             count = 0;
         }
