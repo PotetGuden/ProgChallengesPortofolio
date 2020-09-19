@@ -3,9 +3,13 @@ package Challenge59;
 import java.lang.reflect.MalformedParameterizedTypeException;
 
 public class CaesarCipherCracker {
-    public static void main(String[] args) {
-        CaesarCipherConverter(1,"jeg heter saa");
+    public CaesarCipherCracker(int n, String string){
+        CaesarCipherConverter(n,string);
     }
+
+    public static void main(String[] args) {
+        CaesarCipherConverter(3,"jeg heter saa");
+}
 
     public static void CaesarCipherConverter(int n, String string){ // N = how many letters to the right in alphabet it should replace each character with.
         char[] charsInString = string.toCharArray();
@@ -26,7 +30,7 @@ public class CaesarCipherCracker {
                    if(j > alphabet.length()-n){
                         j = 0;
                    }
-                   newString[i] = alphabet.charAt(j+3);
+                   newString[i] = alphabet.charAt(j+n);
                    System.out.println(newString[i]);
                    if(i==12){
                    }else{
