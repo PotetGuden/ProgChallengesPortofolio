@@ -1,0 +1,1 @@
+ 0001: error type is 0: Debug test
