@@ -6,10 +6,14 @@
 // -or- make TARGET=ex1
 //
 
+
 #include <stdio.h>
 #include "pgdbglog.h"
 
+char glob_var = NULL;
+
 int a, b;
+
 
 int main (void){
 
@@ -18,12 +22,12 @@ int main (void){
 	pgerror("error testing");
 
    int i, j;
-   printf("Addresses of global variables: %p %p\n", &a, &b);
-   printf("Addresses of local variables: %p %p\n", &i, &j);
+   printf("Addresssssess of globsals variables: %p %p\n", &a, &b);
+   printf("Addressses of local vassriables: %p %p\n", &i, &j);
    
    //PgDbgLogger(2,__LINE__, __FILE__, "%s", "C er rart");
-   for(int i = 0; i < 10; i++){
-   		printf("%d", i);
+   for(int i = 0; i < 5; i++){
+   		printf("%d\n", i);
    }
    
 	//PgDbgLogger(3,__LINE__, __FILE__, "%s", "C er weird");

@@ -1,24 +1,24 @@
-TARGET = ex1
-TARGETT = pgdbglog.c
+# Makefiletemplate
 
-ifneq ($(strip $(windir)),)
-# Windows
-   EXT = .exe
-   CC = cl
-   # CFLAGS = -Od -Zi -TP
-   CFLAGS = -O2 -TP
-   RM = del /Y
-else
-# Linux
-   CC = gcc
-   # CFLAGS = -O0 -o $(TARGET)
-   CFLAGS = -O2 -o $(TARGET)
-   LINKMATH = -lm # For ex7 only, but doesn't hurt
-   RM = rm -f
-endif
+INCLDIR = ./include
+CC = gcc
+CFLAGS = -O2
+CFLAGS += -I$(INCLDIR)
 
-$(TARGET)$(EXT): $(TARGET).c makefile
-	$(CC) $(CFLAGS) $(TARGETT) $< $(LINKMATH)
+OBJDIR = obj
 
+_DEPS = pgdbglog.h
+DEPS = $(patsubst %,$(INCLDIR)/%,$(_DEPS))
+
+_OBJS = ex1.o pgdbglog.o
+OBJS = $(patsubst %,$(OBJDIR)/%,$(_OBJS))
+
+$(OBJDIR)/%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+	
+hello: $(OBJS)
+	gcc -o $@ $^ $(CFLAGS)
+
+.PHONY: clean
 clean:
-	$(RM) *.obj *.o *.sln *.pdb *.ilk *.exe $(TARGET)$(EXT)
+	rm-f $(OBJDIR)/*.o *~ core $(INCLDIR)/*~  

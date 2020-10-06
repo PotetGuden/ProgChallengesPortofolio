@@ -5,26 +5,34 @@
 
 
 void PgDbgLogger(unsigned long ulErrorType, int iLine, const char *pszFile, const char *pszFormat, ...){
-	static FILE *fp;					// file pointer
-	static int iCallCounter = 1;		// static counter
+	static FILE *fp = NULL, *sp;					
+	static int iCallCounter = 1;		
+	
+	extern char glob_var;
+	
+	char buffer[100];
 	
 	char szFileName[256] = {0};
 	time_t tTimeAndDate = 0;
-	if(fp == NULL){
-		tTimeAndDate = time(NULL)/10000000;		// time(NULL) er n sekunder etter 1970.
-		snprintf(szFileName, 256 - 1,"debug_%li.txt", tTimeAndDate); // Gir szFileName en verdi
-	}
-	fp = fopen(szFileName,"a"); 		// Åpner debug.txt og gir tilgang til å "a" appende
 	
-	//fprintf(fp," dette er en test");	// <- input til output fil
+	if(fp == NULL){
+		tTimeAndDate = time(NULL) - 1601399931;
+		snprintf(szFileName, 256 - 1,"debug_%li.txt", tTimeAndDate); 
+		fp = fopen(szFileName,"a"); 			
+	
+		sp = fopen("settings.txt", "r");
+		fscanf(sp, "%[^\n\n]", buffer);
+		glob_var = buffer[0];
+		fclose(sp);
+	}
 	
 	va_list vaArgumentPointer;
 	char szOutputString[256] = {0};
 	char *pszType = (ulErrorType==1)?"Error":"Debug";
 	
 	
-	va_start(vaArgumentPointer, pszFormat);		// Aner ikke hva dette gjør..
-	//vfprintf(fp, pszFormat, vaArgumentPointer);
+	va_start(vaArgumentPointer, pszFormat);		
+	
 	vsnprintf(szOutputString, 256 - 1, pszFormat, vaArgumentPointer);
 	va_end(vaArgumentPointer);
 	
@@ -32,6 +40,5 @@ void PgDbgLogger(unsigned long ulErrorType, int iLine, const char *pszFile, cons
 	
 	iCallCounter++;
 	
-	fclose(fp);							// alltid husk å close :)
 	return;
 }
